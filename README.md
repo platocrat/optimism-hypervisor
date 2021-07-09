@@ -1,6 +1,6 @@
 ## Hypervisor
 
-Visor Hypervisor Active liquidity management contract.
+Visor Hypervisor active liquidity management contract.
 
 ### Testing
 
