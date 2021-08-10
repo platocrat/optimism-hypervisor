@@ -12,7 +12,12 @@ OpenZeppelin/
 Uniswap/
 
 flat.sol
-
+artifacts-ovm
+cache-ovm
 typechain
+typechain-ovm
 artifacts
 cache
+artifacts-ovm
+cache-ovm
+env

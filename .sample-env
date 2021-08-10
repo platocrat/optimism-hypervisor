@@ -1,0 +1,3 @@
+DEV_MNEMONIC='12 word mnemonice phase'
+ETHERSCAN_APIKEY='YOUR API'
+DEV_NET='0x+{Your Private key}'
