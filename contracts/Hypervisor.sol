@@ -208,18 +208,19 @@ contract Hypervisor is IVault, IUniswapV3MintCallback, IUniswapV3SwapCallback, E
         int24 _limitUpper,
         address feeRecipient,
         int256 swapQuantity
-    ) external override onlyOwner {
+    ) external override {
+        onlyOwner();
         require(
             _baseLower < _baseUpper &&
                 _baseLower % tickSpacing == 0 &&
                 _baseUpper % tickSpacing == 0,
-            "base position invalid"
+            "bad base position "
         );
         require(
             _limitLower < _limitUpper &&
                 _limitLower % tickSpacing == 0 &&
                 _limitUpper % tickSpacing == 0,
-            "limit position invalid"
+            "bad limit position "
         );
 
         // update fees
@@ -400,7 +401,7 @@ contract Hypervisor is IVault, IUniswapV3MintCallback, IUniswapV3SwapCallback, E
     // @return amount1 Estimated amount of token1 that could be collected by
     // burning the base position
     function getBasePosition()
-        internal
+        public
         view
         returns (
             uint128 liquidity,
@@ -424,7 +425,7 @@ contract Hypervisor is IVault, IUniswapV3MintCallback, IUniswapV3SwapCallback, E
     // @return amount1 Estimated amount of token1 that could be collected by
     // burning the limit position
     function getLimitPosition()
-        internal
+        public
         view
         returns (
             uint128 liquidity,
@@ -475,7 +476,7 @@ contract Hypervisor is IVault, IUniswapV3MintCallback, IUniswapV3SwapCallback, E
     }
 
     // @return tick Uniswap pool's current price tick
-    function currentTick() internal view returns (int24 tick) {
+    function currentTick() public view returns (int24 tick) {
         (, tick, , , , , ) = pool.slot0();
     }
 
@@ -485,19 +486,20 @@ contract Hypervisor is IVault, IUniswapV3MintCallback, IUniswapV3SwapCallback, E
     }
 
     // @param _maxTotalSupply The maximum liquidity token supply the contract allows
-    function setMaxTotalSupply(uint256 _maxTotalSupply) external onlyOwner {
+    function setMaxTotalSupply(uint256 _maxTotalSupply) external {
+        onlyOwner();
         maxTotalSupply = _maxTotalSupply;
     }
 
     // @param _deposit0Max The maximum amount of token0 allowed in a deposit
     // @param _deposit1Max The maximum amount of token1 allowed in a deposit
-    function setDepositMax(uint256 _deposit0Max, uint256 _deposit1Max) external onlyOwner {
+    function setDepositMax(uint256 _deposit0Max, uint256 _deposit1Max) external {
+        onlyOwner();
         deposit0Max = _deposit0Max;
         deposit1Max = _deposit1Max;
     }
 
-    modifier onlyOwner() {
+    function onlyOwner() private {
         require(msg.sender == owner, "only owner");
-        _;
     }
 }
