@@ -15,13 +15,13 @@ subtask(
 
 subtask(TASK_CREATE_UNISWAPV3_ARTIFACT, async (_, { artifacts }) => {
     fse.copySync(
-        path.join(__dirname, '../node_modules/@uniswap/v3-core/artifacts/contracts'),
-        path.join((artifacts as any)['_artifactsPath'], '@uniswap/v3-core/contracts'),
+        path.join(__dirname, '../node_modules/@uniswap/v3-core-optimism/artifacts-ovm/contracts'),
+        path.join((artifacts as any)['_artifactsPath'], '@uniswap/v3-core-optimism/contracts'),
         { overwrite: false }
     )
     fse.copySync(
-        path.join(__dirname, '../node_modules/@uniswap/v3-periphery/artifacts/contracts'),
-        path.join((artifacts as any)['_artifactsPath'], '@uniswap/v3-periphery/contracts'),
+        path.join(__dirname, '../node_modules/@uniswap/v3-periphery-optimism/artifacts-ovm/contracts'),
+        path.join((artifacts as any)['_artifactsPath'], '@uniswap/v3-periphery-optimism/contracts'),
         { overwrite: false }
     )
 });
