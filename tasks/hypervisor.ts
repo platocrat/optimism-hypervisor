@@ -33,13 +33,14 @@ task("library-hypervisorDeployer", "Deploy Hypervisor contract").setAction(
     console.log(`HyperVisor Library Deployer deployed at ${hyperVisorDeployer.address}`);
   }
 );
-//HyperVisor library :  0x1DECc0012cd7249F32A97B3B87AF9A93602cbD5c on kovan-optimism
-task("deploy-hypervisor-factory", "Deploy Hypervisor contract").setAction(
+//HyperVisor library :  0x3240E8CD74E3d90Cc14eFb1840485cC58248f30d on kovan-optimism
+task("deploy-hypervisor-factory", "Deploy HypervisorFactory contract").setAction(
   async (cliArgs, { ethers, run, network }) => {
     //TODO cli args
     // goerli
     const args = {
       uniswapFactory: "0x1f98431c8ad98523631ae4a59f267346ea31f984",
+      hyperVisorDeployerLibrary:"0x3240E8CD74E3d90Cc14eFb1840485cC58248f30d"
     };
 
     console.log("Network");
@@ -62,7 +63,7 @@ task("deploy-hypervisor-factory", "Deploy Hypervisor contract").setAction(
 
     const HypervisorFactory = await ethers.getContractFactory("HypervisorFactory", {
       libraries: {
-        HypervisorDeployer: "0x1DECc0012cd7249F32A97B3B87AF9A93602cbD5c",
+        HypervisorDeployer: args.hyperVisorDeployerLibrary
       },
     });
 
@@ -117,20 +118,23 @@ task("verify-factory", "Deploy Hypervisor contract").setAction(
     });
   }
 );
-//HyperVisor Factory on optimims-kovan : 0xAB75179bBA09ff697DD34bD04b7795357d7B0539
-//Weth-Dai on Optimism-Kovan: 0xE80E25982EC9E1e339d15F98F6f73db5F607D8b0
+//VISOR Token  on optimism-kovan: 0x5B650f3897cc19869DFc36F863568b21BDb50CCF
+//HyperVisor Factory on optimims-kovan : 0x158886084901605ae9c5F68e7182225c756085fD
+//Weth-Dai Hypervisor on Optimism-Kovan: 0x962B02c971a4829d1a33b1b0411EdaaecF9d0D49
 //weth-Dai pool on Optimism-Kovan: 0xE80E25982EC9E1e339d15F98F6f73db5F607D8b0
+//Weth-Usdc HyperVisor on Optimism-Kovan: 0x9Fb6eA81D2cAa05a45b93189d8c7114384835112
+//weth-Usdc pool on Optimism-Kovan: 0xFF918CF56fBe39E282ae12e69592D7061F1BE7e3
 task("deploy-hypervisor", "Deploy Hypervisor contract").setAction(
   async (cliArgs, { ethers, run, network }) => {
     // TODO cli args
     // goerli
     const args = {
-      factory: "0xdE96141E4cbce2ddCF2BD5E3CebaF9457669FC9B",
+      factory: "0x158886084901605ae9c5F68e7182225c756085fD",
       token0: "0x4200000000000000000000000000000000000006", //WETH Token on Optimism -Kovan
-      token1: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1", //DAI token on Optimism-Kovan
+      token1: "0x7f5c764cbc14f9669b88837ca1490cca17c31607", //USDC token on Optimism-Kovan
       fee: FeeAmount.MEDIUM,
-      name: "Visor WETH DAI pool",
-      symbol: "vWETHDAI",
+      name: "Visor WETH USDC pool",
+      symbol: "vWETHUSDC",
     };
 
     console.log("Network");
