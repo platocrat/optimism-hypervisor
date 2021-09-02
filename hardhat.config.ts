@@ -164,11 +164,11 @@ extendEnvironment((hre) => {
       const path = "m/44'/60'/0'/0";
       const indices = Array.from(Array(20).keys()); // generates array of [0, 1, 2, ..., 18, 19]
       return indices.map((i) => {
-        var c: Wallet = Wallet.fromMnemonic(mnemonic, `${path}/${i}`).connect(provider);
+        var c: Wallet = Wallet.fromMnemonic(mnemonic, `${ path }/${ i }`).connect(provider);
         c.sendTransaction = async (
           transaction: Deferrable<TransactionRequest>
         ): Promise<TransactionResponse> => {
-          const tx = await Wallet.fromMnemonic(mnemonic, `${path}/${i}`)
+          const tx = await Wallet.fromMnemonic(mnemonic, `${ path }/${ i }`)
             .connect(provider)
             .sendTransaction(transaction);
           console.log("tx waiting");
@@ -243,19 +243,19 @@ export default {
       allowUnlimitedContractSize: false,
     },
     mainnet: {
-      url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      url: `https://mainnet.infura.io/v3/${ process.env.INFURA_API_KEY }`,
     },
     ropsten: {
-      url: `https://ropsten.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      url: `https://ropsten.infura.io/v3/${ process.env.INFURA_API_KEY }`,
     },
     rinkeby: {
-      url: `https://rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      url: `https://rinkeby.infura.io/v3/${ process.env.INFURA_API_KEY }`,
     },
     goerli: {
-      url: `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      url: `https://goerli.infura.io/v3/${ process.env.INFURA_API_KEY }`,
     },
     kovan: {
-      url: `https://kovan.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      url: `https://kovan.infura.io/v3/${ process.env.INFURA_API_KEY }`,
     }, // Add this network to your config!
     optimism: {
       url: "http://127.0.0.1:8545",
