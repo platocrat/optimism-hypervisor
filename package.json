@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@eth-optimism/hardhat-ovm": "^0.2.2",
+    "@ethersproject/experimental": "^5.4.0",
     "@openzeppelin/contracts": "^3.4.1-solc-0.7-6",
     "@uniswap/v3-core-optimism": "^1.0.0-rc.0",
     "@uniswap/v3-periphery-optimism": "^1.1.0-rc.1",
